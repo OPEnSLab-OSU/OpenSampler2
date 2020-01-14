@@ -11,7 +11,7 @@ void StateStop::enter(KPStateMachine & sm) {
     }
 
     Application & app = *static_cast<Application *>(sm.controller);
-	
+
     app.pump.off();
     app.shift.writeZeros();
     app.shift.writeLatchOut();
@@ -22,7 +22,7 @@ void StateStop::enter(KPStateMachine & sm) {
 }
 
 void StateSample::enter(KPStateMachine & sm) {
-	if (time == 0 || time > 15) {
+    if (time == 0 || time > 15) {
         println("Invalid state configuration");
         return;
     }
@@ -43,15 +43,15 @@ void StateSample::enter(KPStateMachine & sm) {
     app.shift.flush();
     app.pump.on();
 
-	// Flush the main pipe with air
-	setTimeCondition(secsToMillis(time), [&]() {
-		app.shift.setRegister(r, b, LOW);
-		app.shift.flush();
-		app.pump.on(Direction::reverse);
-	});
+    // Flush the main pipe with air
+    setTimeCondition(secsToMillis(time), [&]() {
+        app.shift.setRegister(r, b, LOW);
+        app.shift.flush();
+        app.pump.on(Direction::reverse);
+    });
 
-	// Transition to stop state
-	setTimeCondition(secsToMillis(time + 5), [&]() {
+    // Transition to stop state
+    setTimeCondition(secsToMillis(time + 5), [&]() {
         sm.transitionTo(StateName::stop);
     });
 }

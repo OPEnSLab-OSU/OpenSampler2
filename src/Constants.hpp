@@ -1,6 +1,6 @@
 #pragma once
 
-#define Power_Module_Pin A0
+#define Power_Module_Pin         A0
 #define RTC_Interrupt_Pin        A1
 #define Battery_Voltage_Pin      A2
 #define Analog_Sensor_1_Pin      A3

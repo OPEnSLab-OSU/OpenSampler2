@@ -1,14 +1,14 @@
 #ifndef UNIT_TEST
-#include <KPApplicationRuntime.hpp>
 #include <Application.hpp>
+#include <KPApplicationRuntime.hpp>
 
 Application app;
 
 void setup() {
-	Runtime::setInitialAppController(app);
+    Runtime::setInitialAppController(app);
 }
 
 void loop() {
-	Runtime::update();
+    Runtime::update();
 }
 #endif

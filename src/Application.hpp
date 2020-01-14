@@ -31,7 +31,7 @@ struct Status {
     int valveCurrent            = 0;
     KPState * stateCurrent      = nullptr;
 
-	const char * logfile = "logs.txt";
+    const char * logfile = "logs.txt";
 
     Status() {
         valves.fill(static_cast<int>(ValveStatus::free));
@@ -109,25 +109,25 @@ private:
 
     void commandReceived(const String & line) override {
         if (line == "printlogs") {
-			File logs = SD.open("LOGS.TXT", FILE_READ);
-			if (!logs) {
-				println("Logs file not found");
-				logs.close();
-				return;
-			}
+            File logs = SD.open("LOGS.TXT", FILE_READ);
+            if (!logs) {
+                println("Logs file not found");
+                logs.close();
+                return;
+            }
 
-			int c;
-			while ((c = logs.read()) != EOF) {
-				print(static_cast<char>(c));
-			}
+            int c;
+            while ((c = logs.read()) != EOF) {
+                print(static_cast<char>(c));
+            }
 
-			logs.close();
-		}
+            logs.close();
+        }
 
-		if (line == "clearlogs") {
-			char filename[] = "logs.txt";
-			SD.remove(filename);
-		}
+        if (line == "clearlogs") {
+            char filename[] = "logs.txt";
+            SD.remove(filename);
+        }
     }
 
 public:
@@ -156,10 +156,10 @@ public:
         sm.registerState(StateSample(), StateName::sample, 3);
         sm.registerState(StateFlush(), StateName::flush, 4);
 
-		// KPSerialInput delegate
+        // KPSerialInput delegate
         KPSerialInput::instance().addListener(this);
-		
-		// Adding components 
+
+        // Adding components
         addComponent(sm);
         addComponent(scheduler);
         addComponent(web);
@@ -167,18 +167,18 @@ public:
         addComponent(card);
         addComponent(shift);
 
-		// Setup server
+        // Setup server
         setupServer();
-		web.begin();
+        web.begin();
 
-		// Transition to idle state
+        // Transition to idle state
         sm.transitionTo(StateName::idle);
 
-		KPActionChain<1> logging;
-		logging.delay(1000, [this]() {
-			logToFile("logs.txt", card);
-		});
-		runForever(logging, scheduler);
+        KPActionChain<1> logging;
+        logging.delay(1000, [this]() {
+            logToFile("logs.txt", card);
+        });
+        runForever(logging, scheduler);
     }
 
     void update() override {
@@ -202,6 +202,6 @@ public:
 
         File log = SD.open(filepath, FILE_WRITE);
         log.printf("%d, %s, %d\n", millis(), sm.getCurrentState()->getName(), status().valveCurrent);
-		log.close();
+        log.close();
     }
 };
