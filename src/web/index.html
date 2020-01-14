@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<meta charset="UTF-8">
+
+	<title>OpenSampler</title>
+	<link rel="stylesheet" href="style.css" type="text/css">
+	<script type="application/javascript" src="script.js"></script>
+</head>
+<body>
+
+<main id="main">
+
+	<header id="header">
+		<ul id="connection-status">
+			<li id="connection-indicator" class="offline"></li>
+			<li id="connection">Offline</li>
+		</ul>
+		<div></div>
+	</header>
+
+	<div id="content">
+		<div id="state-timeline" class="full-width"></div>
+		<div id="valve-overview" class="full-width"></div>
+
+		<div id="state-config-container">
+			<div class="track">
+				<form class="card state-config" data-name="flush" action="#" autocomplete="off">
+					<h1 class="heading full-width">Flush</h1>
+					<div class="state-property" data-name="time">
+						<p class="title">
+							<span class="content">Time limit </span>
+							<span class="extra">(max: <i class="max">15 seconds</i>)</span>
+						</p>
+						<p class="subtitle">Controls the time limit before moving to the sample state</p>
+						<input class="input" type="number" max="15" min="0">
+					</div>
+				</form>
+			</div>
+
+			<div class="track">
+				<form class="card state-config" data-name="sample" action="#" autocomplete="off">
+					<h1 class="heading full-width">Sample</h1>
+
+					<div class="state-property" data-name="time">
+						<p class="title">
+							<span class="content">Time limit </span>
+							<span class="extra">(max: <i class="max">15 seconds</i>)</span>
+						</p>
+						<p class="subtitle">Controls the time limit before moving to the clean state</p>
+						<input class="input" type="number" max="15" min="0">
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<div id="control-buttons">
+			<button id="start-button" class="control-button">Initiate Sampling Sequence</button>
+			<button id="stop-button" class="control-button">Stop</button>
+		</div>
+
+	</div>
+</main>
+
+<div id="loading-screen" class="hide">
+	<div class="obj"></div>
+	<div class="obj"></div>
+	<div class="obj"></div>
+	<div class="obj"></div>
+	<div class="obj"></div>
+</div>
+
+</body>
+</html>
