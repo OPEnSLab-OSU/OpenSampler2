@@ -4,6 +4,20 @@
 		"string_view": "cpp",
 		"initializer_list": "cpp",
 		"utility": "cpp",
-		"cstddef": "cpp"
+		"cstddef": "cpp",
+		"functional": "cpp",
+		"*.tcc": "cpp",
+		"exception": "cpp",
+		"algorithm": "cpp",
+		"fstream": "cpp",
+		"istream": "cpp",
+		"memory": "cpp",
+		"new": "cpp",
+		"ostream": "cpp",
+		"sstream": "cpp",
+		"streambuf": "cpp",
+		"cmath": "cpp",
+		"type_traits": "cpp",
+		"typeinfo": "cpp"
 	}
 }
